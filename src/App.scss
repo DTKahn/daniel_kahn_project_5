@@ -1,5 +1,9 @@
+// General partial imports
 @import './stylePartials/setup';
 @import './stylePartials/utils';
+
+// Component imports
+@import './components/SearchSelect/SearchSelect';
 
 * {
   margin: 0;

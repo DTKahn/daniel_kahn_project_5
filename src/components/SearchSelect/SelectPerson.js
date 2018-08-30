@@ -8,7 +8,7 @@ const SearchSelect = (props) => {
         <div>
             <h2>Select Actor {props.number}</h2>
 
-            <Search number={props.number} getActor={props.getActor}/>
+            <Search number={props.number} searchActor={props.searchActor}/>
             
         </div>
     )

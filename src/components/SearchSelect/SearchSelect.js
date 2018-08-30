@@ -6,8 +6,8 @@ import SelectPerson from './SelectPerson';
 const SearchSelect = (props) => {
     return (
         <div>
-            <SelectPerson number='1' getActor={props.getActor} />
-            <SelectPerson number='2' getActor={props.getActor}/>
+            <SelectPerson number='1' searchActor={props.searchActor} />
+            <SelectPerson number='2' searchActor={props.searchActor}/>
         </div>
     )
 };

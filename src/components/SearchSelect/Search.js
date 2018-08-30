@@ -14,7 +14,7 @@ class Search extends Component {
         // Prevent the page from refreshing when the form is submitted
         e.preventDefault();
 
-        this.props.getActor(this.props.number);
+        this.props.searchActor(this.props.number);
 
         console.log('this: ', this);
         

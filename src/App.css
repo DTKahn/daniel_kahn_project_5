@@ -134,6 +134,9 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
 html {
   font-size: 62.5%; }
 
+h2 {
+  background: lightblue; }
+
 * {
   margin: 0;
   padding: 0; }

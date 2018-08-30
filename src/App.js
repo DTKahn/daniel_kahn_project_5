@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Axios from 'axios';
-import SearchSelect from './components/SearchSelect';
+import SearchSelect from './components/SearchSelect/SearchSelect';
 
 class App extends Component {
   constructor(){
@@ -24,14 +24,10 @@ class App extends Component {
     }
   }
 
-  getActor = (actorNumber) => {
+  
+  searchActor = (actorNumber) => {
     console.log(`getActor fired for ${actorNumber}`);
     
-  }
-
-  componentDidMount(){
-
-    // Test api call returning list of actors matching the query
     Axios({
       url: `https://api.themoviedb.org/3/search/person`,
       params: {
@@ -40,11 +36,29 @@ class App extends Component {
       }
     })
       .then((res) => {
-        console.log('res: ',res)
+        console.log('res: ', res)
         this.setState({
           searchResults: res.data.results
         });
       });
+  }
+
+  componentDidMount(){
+    
+    // Test api call returning list of actors matching the query
+    // Axios({
+    //   url: `https://api.themoviedb.org/3/search/person`,
+    //   params: {
+    //     api_key: `972b4433f3e8f302aee3055dd209330c`,
+    //     query: 'Robert Elliott'
+    //   }
+    // })
+    //   .then((res) => {
+    //     console.log('res: ',res)
+    //     this.setState({
+    //       searchResults: res.data.results
+    //     });
+    //   });
   }
   
   render() {
@@ -55,7 +69,7 @@ class App extends Component {
           <h1 className="App-title">Movie Match</h1>
         </header>
         <div>
-          <SearchSelect getActor={this.getActor}/>
+          <SearchSelect searchActor={this.searchActor}/>
         </div>
       </div>
     );
