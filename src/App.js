@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Axios from 'axios';
+import SearchSelect from './components/SearchSelect';
 
 class App extends Component {
   constructor(){
@@ -22,9 +23,15 @@ class App extends Component {
 
     }
   }
-  
+
+  getActor = (actorNumber) => {
+    console.log(`getActor fired for ${actorNumber}`);
+    
+  }
+
   componentDidMount(){
 
+    // Test api call returning list of actors matching the query
     Axios({
       url: `https://api.themoviedb.org/3/search/person`,
       params: {
@@ -47,6 +54,9 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Movie Match</h1>
         </header>
+        <div>
+          <SearchSelect getActor={this.getActor}/>
+        </div>
       </div>
     );
   }
