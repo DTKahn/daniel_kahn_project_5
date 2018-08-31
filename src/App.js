@@ -4,18 +4,22 @@ import './App.css';
 import Axios from 'axios';
 import SearchSelect from './components/SearchSelect/SearchSelect';
 
+
+
+const apiKey = `972b4433f3e8f302aee3055dd209330c`;
+
+const apiUrl = `https://api.themoviedb.org/3`;
+
 class App extends Component {
   constructor(){
     super();
     this.state = {
-      // Result of the actor search
-      searchResults: [],
+      
+      // Result of the actor search for actor 1
+      searchResultsActor1: {},
 
-      // Information on actor1
-      actor1: {},
-
-      // Information on actor2
-      actor2: {},
+      // Result of the actor search for actor 2
+      searchResultsActor2: {},
 
       // Initually contain all of the films from actor 1 and actor 2
       //// Then will be filtered for movies which have both actor1 and actor2
@@ -23,42 +27,71 @@ class App extends Component {
 
     }
   }
-
   
-  searchActor = (actorNumber) => {
-    console.log(`getActor fired for ${actorNumber}`);
+  searchActor = (actorNumber, userInput) => {
+    // console.log(`getActor fired for ${actorNumber}, userInput: ${userInput}`);
     
     Axios({
-      url: `https://api.themoviedb.org/3/search/person`,
+      url: `${apiUrl}/search/person`,
       params: {
-        api_key: `972b4433f3e8f302aee3055dd209330c`,
-        query: 'Robert Elliott'
+        api_key: apiKey,
+        query: userInput
       }
     })
-      .then((res) => {
-        console.log('res: ', res)
-        this.setState({
-          searchResults: res.data.results
-        });
+    .then((res) => {
+      // console.log('set state with res: ', res.data.results);
+
+      // Array of popularity values to get the top actor (or stretch-goals, top-3)
+      const popularityKeys = res.data.results.map(actor => {
+        
+        // Get the popularity of each actor
+        return(
+          actor.popularity
+        );
+      })
+
+      const mostPopularActor = res.data.results.filter(actor => {
+        return actor.popularity === Math.max(...popularityKeys);
       });
+
+      this.setState({
+        [`searchResultsActor${actorNumber}`]: mostPopularActor[0]
+      });
+    });
+  }
+
+  // Gets list of movies an actor has been in
+  getActorMovies = (actorId) => {
+
+    return Axios({
+      url: `${apiUrl}/person/${actorId}/movie_credits`,
+      params: {
+        api_key: apiKey
+      }
+    });
+
+  }
+
+  // Gets the movies both actors are in and returns an array of objects
+  getGetMatchingMovies = async (actorId1, actorId2) => {
+    const actor1Movies = await this.getActorMovies(actorId1);
+    const actor2Movies = await this.getActorMovies(actorId2);
+
+    // Return array of movies with both actors as objects
+    // {
+    //   actor1Role: ,
+    //   actor2Role: ,
+    //   movieName: ,
+    //   moviePoster: ,
+    // }
+
+    console.log('Actor 1 Movies: ', actor1Movies);
+    console.log('Actor 2 Movies: ', actor2Movies);
+
   }
 
   componentDidMount(){
-    
-    // Test api call returning list of actors matching the query
-    // Axios({
-    //   url: `https://api.themoviedb.org/3/search/person`,
-    //   params: {
-    //     api_key: `972b4433f3e8f302aee3055dd209330c`,
-    //     query: 'Robert Elliott'
-    //   }
-    // })
-    //   .then((res) => {
-    //     console.log('res: ',res)
-    //     this.setState({
-    //       searchResults: res.data.results
-    //     });
-    //   });
+    this.getGetMatchingMovies(2157, 10989)
   }
   
   render() {
@@ -69,7 +102,7 @@ class App extends Component {
           <h1 className="App-title">Movie Match</h1>
         </header>
         <div>
-          <SearchSelect searchActor={this.searchActor}/>
+          <SearchSelect searchActor={this.searchActor} actor1={this.state.searchResultsActor1} actor2={this.state.searchResultsActor1}/>
         </div>
       </div>
     );
