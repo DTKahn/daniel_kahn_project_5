@@ -88,10 +88,25 @@ class App extends Component {
     console.log('Actor 1 Movies: ', actor1Movies);
     console.log('Actor 2 Movies: ', actor2Movies);
 
+    const actor1MovieIds = []
+    const actor2MovieIds = []
+    
+    actor1Movies.data.cast.forEach(role => {
+      actor1MovieIds.push(role.id)
+    });
+
+    actor2Movies.data.cast.forEach(role => {
+      actor2MovieIds.push(role.id)
+    });
+
+    const matchingMoviesIDs = actor1MovieIds.filter(id => actor2MovieIds.includes(id));
+
+    console.log('matchingMovieIDs: ', matchingMoviesIDs);
+
   }
 
   componentDidMount(){
-    this.getGetMatchingMovies(2157, 10989)
+    this.getGetMatchingMovies(10980, 10989)
   }
   
   render() {
