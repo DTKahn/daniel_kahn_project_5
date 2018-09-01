@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Search from './Search';
+import DisplaySearch from './DisplayActorSearchResult';
 
 const SearchSelect = (props) => {
     return (
@@ -9,6 +10,8 @@ const SearchSelect = (props) => {
             <h2>Select Actor {props.number}</h2>
 
             <Search number={props.number} searchActor={props.searchActor}/>
+            
+            <DisplaySearch actorData={props.actorData} />
             
         </div>
     )

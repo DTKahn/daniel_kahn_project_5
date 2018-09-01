@@ -151,7 +151,7 @@ class App extends Component {
           <h1 className="App-title">Movie Match</h1>
         </header>
         <div>
-          <SearchSelect searchActor={this.searchActor} actor1={this.state.searchResultsActor1} actor2={this.state.searchResultsActor1}/>
+          <SearchSelect searchActor={this.searchActor} actor1={this.state.searchResultsActor1} actor2={this.state.searchResultsActor2}/>
         </div>
       </div>
     );
