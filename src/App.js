@@ -114,31 +114,55 @@ class App extends Component {
     //       }
     //     }
     const formatedMoviesArray = actor1Movies.data.cast.map((movie) => {
-      // console.log('movie: ', movie.id);
+      // console.log('movie: ', movie);
       
       return({
           movieId: movie.id,
           actor1Role: movie.character,
           movieName: movie.title,
+          overview: movie.overview,
           moviePoster: movie.poster_path,
           releaseDate: movie.release_date
       });
     });
 
-    console.log('formatedMoviesArray: ', formatedMoviesArray);
+    // console.log('formatedMoviesArray: ', formatedMoviesArray);
     
     const matchingFormatedMoviesArray = formatedMoviesArray.filter(movie => {
       return matchingMoviesIds.includes(movie.movieId);
     });
 
     console.log('matchingFormatedMoviesArray: ', matchingFormatedMoviesArray);
+
+    console.log('actor2Movies: ', actor2Movies);
     
 
+
+    
+    // NEXT STEP ADD ACTOR 2
+
+    matchingFormatedMoviesArray.forEach(movie => {
+
+      const matchingMovie = actor2Movies.data.cast.find(actor2Movie => {
+        return actor2Movie.id === movie.movieId;
+      });
+
+
+      console.log('movie: ', movie);
+      console.log('matchingMovie: ', matchingMovie);
+      console.log('matchingMovie Name: ', matchingMovie.title);
+      console.log('matchingMovie Character: ', matchingMovie.character);
+
+      return movie.actor2Role = matchingMovie.character;
+      
+    });
+
+    console.log('matchingFormatedMoviesArray: ', matchingFormatedMoviesArray);
     
   }
 
   componentDidMount(){
-    this.getMatchingMovies(10980, 10989)
+    this.getMatchingMovies(51329, 72129)
   }
   
   render() {
