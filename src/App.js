@@ -72,41 +72,73 @@ class App extends Component {
 
   }
 
+
+  
+  
   // Gets the movies both actors are in and returns an array of objects
-  getGetMatchingMovies = async (actorId1, actorId2) => {
+  getMatchingMovies = async (actorId1, actorId2) => {
     const actor1Movies = await this.getActorMovies(actorId1);
     const actor2Movies = await this.getActorMovies(actorId2);
-
-    // Return array of movies with both actors as objects
-    // {
-    //   actor1Role: ,
-    //   actor2Role: ,
-    //   movieName: ,
-    //   moviePoster: ,
-    // }
-
     console.log('Actor 1 Movies: ', actor1Movies);
     console.log('Actor 2 Movies: ', actor2Movies);
-
+    
     const actor1MovieIds = []
     const actor2MovieIds = []
     
     actor1Movies.data.cast.forEach(role => {
       actor1MovieIds.push(role.id)
     });
-
+    
     actor2Movies.data.cast.forEach(role => {
       actor2MovieIds.push(role.id)
     });
+    
+    
+    
+    
+    const matchingMoviesIds = actor1MovieIds.filter(id => actor2MovieIds.includes(id));
+    
+    // console.log('matchingMovieIDs: ', matchingMoviesIds);
+    
+    
+    // Create an array of objects with all of the movies from one of the actors
+    //   Will be filtered using the matchingMoviesIds
+    //   Format:
+    //     {12107:
+    //       {
+    //       actor1Role: 'Professor Sherman Klump and various roles',
+    //       actor2Role: '',
+    //       movieName: 'Nutty Professor II: The Klumps',
+    //       moviePoster: '/r1WXXXtpNBsgCnCTdjT6ERxOcEV.jpg',
+    //       releaseDate: '2000-07-27'
+    //       }
+    //     }
+    const formatedMoviesArray = actor1Movies.data.cast.map((movie) => {
+      // console.log('movie: ', movie.id);
+      
+      return({
+          movieId: movie.id,
+          actor1Role: movie.character,
+          movieName: movie.title,
+          moviePoster: movie.poster_path,
+          releaseDate: movie.release_date
+      });
+    });
 
-    const matchingMoviesIDs = actor1MovieIds.filter(id => actor2MovieIds.includes(id));
+    console.log('formatedMoviesArray: ', formatedMoviesArray);
+    
+    const matchingFormatedMoviesArray = formatedMoviesArray.filter(movie => {
+      return matchingMoviesIds.includes(movie.movieId);
+    });
 
-    console.log('matchingMovieIDs: ', matchingMoviesIDs);
+    console.log('matchingFormatedMoviesArray: ', matchingFormatedMoviesArray);
+    
 
+    
   }
 
   componentDidMount(){
-    this.getGetMatchingMovies(10980, 10989)
+    this.getMatchingMovies(10980, 10989)
   }
   
   render() {
