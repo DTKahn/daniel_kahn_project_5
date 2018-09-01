@@ -93,14 +93,8 @@ class App extends Component {
       actor2MovieIds.push(role.id)
     });
     
-    
-    
-    
     const matchingMoviesIds = actor1MovieIds.filter(id => actor2MovieIds.includes(id));
-    
-    // console.log('matchingMovieIDs: ', matchingMoviesIds);
-    
-    
+  
     // Create an array of objects with all of the movies from one of the actors
     //   Will be filtered using the matchingMoviesIds
     //   Format:
@@ -125,19 +119,10 @@ class App extends Component {
           releaseDate: movie.release_date
       });
     });
-
-    // console.log('formatedMoviesArray: ', formatedMoviesArray);
     
     const matchingFormatedMoviesArray = formatedMoviesArray.filter(movie => {
       return matchingMoviesIds.includes(movie.movieId);
     });
-
-    console.log('matchingFormatedMoviesArray: ', matchingFormatedMoviesArray);
-
-    console.log('actor2Movies: ', actor2Movies);
-    
-
-
     
     // NEXT STEP ADD ACTOR 2
 
@@ -146,7 +131,6 @@ class App extends Component {
       const matchingMovie = actor2Movies.data.cast.find(actor2Movie => {
         return actor2Movie.id === movie.movieId;
       });
-
 
       console.log('movie: ', movie);
       console.log('matchingMovie: ', matchingMovie);
@@ -158,7 +142,11 @@ class App extends Component {
     });
 
     console.log('matchingFormatedMoviesArray: ', matchingFormatedMoviesArray);
-    
+
+
+    this.setState({
+      movies: matchingFormatedMoviesArray
+    });
   }
 
   componentDidMount(){
