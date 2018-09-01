@@ -4,8 +4,6 @@ import './App.css';
 import Axios from 'axios';
 import SearchSelect from './components/SearchSelect/SearchSelect';
 
-
-
 const apiKey = `972b4433f3e8f302aee3055dd209330c`;
 
 const apiUrl = `https://api.themoviedb.org/3`;
@@ -24,7 +22,6 @@ class App extends Component {
       // Initually contain all of the films from actor 1 and actor 2
       //// Then will be filtered for movies which have both actor1 and actor2
       movies: []
-
     }
   }
   
@@ -69,46 +66,45 @@ class App extends Component {
         api_key: apiKey
       }
     });
-
   }
-
-
   
-  
-  // Gets the movies both actors are in and returns an array of objects
+  // Gets the movies both actors are in and returns an array of objects of those movies
   getMatchingMovies = async (actorId1, actorId2) => {
     const actor1Movies = await this.getActorMovies(actorId1);
     const actor2Movies = await this.getActorMovies(actorId2);
     console.log('Actor 1 Movies: ', actor1Movies);
     console.log('Actor 2 Movies: ', actor2Movies);
     
+    // Empty array for the ids of each movie each actor is in
+    // Will be used to construct an array of movies ids which both actors were in
     const actor1MovieIds = []
     const actor2MovieIds = []
     
+    // Actor 1 – Pushing movie ids into actor1MovieIds
     actor1Movies.data.cast.forEach(role => {
       actor1MovieIds.push(role.id)
     });
     
+    // Actor 2 – Pushing movie ids into actor2MovieIds
     actor2Movies.data.cast.forEach(role => {
       actor2MovieIds.push(role.id)
     });
     
+    // Creating a new array of movie IDs with movies both actors are in
     const matchingMoviesIds = actor1MovieIds.filter(id => actor2MovieIds.includes(id));
   
     // Create an array of objects with all of the movies from one of the actors
     //   Will be filtered using the matchingMoviesIds
     //   Format:
-    //     {12107:
     //       {
+    //       movieId: 12107,
     //       actor1Role: 'Professor Sherman Klump and various roles',
     //       actor2Role: '',
     //       movieName: 'Nutty Professor II: The Klumps',
     //       moviePoster: '/r1WXXXtpNBsgCnCTdjT6ERxOcEV.jpg',
     //       releaseDate: '2000-07-27'
     //       }
-    //     }
     const formatedMoviesArray = actor1Movies.data.cast.map((movie) => {
-      // console.log('movie: ', movie);
       
       return({
           movieId: movie.id,
@@ -120,30 +116,24 @@ class App extends Component {
       });
     });
     
+    // Filtering formatedMoviesArray to only contain movies from both actors
     const matchingFormatedMoviesArray = formatedMoviesArray.filter(movie => {
       return matchingMoviesIds.includes(movie.movieId);
     });
     
-    // NEXT STEP ADD ACTOR 2
-
+    // Add actor2's role to each movie in matchingFormatedMoviesArray
     matchingFormatedMoviesArray.forEach(movie => {
 
       const matchingMovie = actor2Movies.data.cast.find(actor2Movie => {
         return actor2Movie.id === movie.movieId;
       });
 
-      console.log('movie: ', movie);
-      console.log('matchingMovie: ', matchingMovie);
-      console.log('matchingMovie Name: ', matchingMovie.title);
-      console.log('matchingMovie Character: ', matchingMovie.character);
-
       return movie.actor2Role = matchingMovie.character;
-      
     });
 
     console.log('matchingFormatedMoviesArray: ', matchingFormatedMoviesArray);
 
-
+    // Set state movies with array matchingFormatedMoviesArray
     this.setState({
       movies: matchingFormatedMoviesArray
     });
