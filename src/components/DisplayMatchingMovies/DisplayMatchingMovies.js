@@ -3,7 +3,7 @@ import React from 'react';
 const DisplayMatchingMovies = props => {
     return (
         <div>
-            <button>Show Matches!</button>
+            <button onClick={() => {props.getMatchingMovies(props.actor1.id, props.actor2.id)}}>Show Matches!</button>
             <ul>
                 {/* Ternary waits for prop to have content before running the map */}
                 {

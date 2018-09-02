@@ -139,9 +139,9 @@ class App extends Component {
     });
   }
 
-  componentDidMount(){
-    this.getMatchingMovies(51329, 72129)
-  }
+  // componentDidMount(){
+  //   this.getMatchingMovies(51329, 72129)
+  // }
   
   render() {
     return (
@@ -161,6 +161,7 @@ class App extends Component {
             movies={this.state.movies} 
             actor1={this.state.searchResultsActor1} 
             actor2={this.state.searchResultsActor2}
+            getMatchingMovies={this.getMatchingMovies}
           />
         </div>
       </div>
