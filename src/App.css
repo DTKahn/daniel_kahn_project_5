@@ -144,8 +144,14 @@ h2 {
 img {
   max-width: 100%; }
 
-.headShot {
+.headShot,
+.moviePoster {
   width: 15%; }
+
+.movieLi {
+  background: lightgray;
+  padding: 20px;
+  margin-top: 30px; }
 
 .App {
   text-align: center; }

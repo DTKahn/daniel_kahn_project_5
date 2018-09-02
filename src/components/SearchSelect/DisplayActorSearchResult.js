@@ -21,6 +21,7 @@ const DisplayActorSearchResult = (props) => {
             <ul>
                 
                 {/* li with title of each known for movie */}
+                {/* Ternary waits for prop to have content before running the map */}
                 {
                     props.actorData.known_for
                     ?
@@ -29,7 +30,7 @@ const DisplayActorSearchResult = (props) => {
                     })
                     : 
                     null
-            }
+                }
                 
             </ul>
 

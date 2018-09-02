@@ -20,8 +20,7 @@ class App extends Component {
       // Result of the actor search for actor 2
       searchResultsActor2: {},
 
-      // Initually contain all of the films from actor 1 and actor 2
-      //// Then will be filtered for movies which have both actor1 and actor2
+      // Matching Movies for Actor 1 and 2
       movies: []
     }
   }
@@ -152,8 +151,17 @@ class App extends Component {
           <h1 className="App-title">Movie Match</h1>
         </header>
         <div>
-          <SearchSelect searchActor={this.searchActor} actor1={this.state.searchResultsActor1} actor2={this.state.searchResultsActor2}/>
-          <DisplayMatchingMovies />
+          <SearchSelect 
+            searchActor={this.searchActor} 
+            actor1={this.state.searchResultsActor1} 
+            actor2={this.state.searchResultsActor2}
+          />
+
+          <DisplayMatchingMovies 
+            movies={this.state.movies} 
+            actor1={this.state.searchResultsActor1} 
+            actor2={this.state.searchResultsActor2}
+          />
         </div>
       </div>
     );
