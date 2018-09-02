@@ -27,6 +27,10 @@ class Search extends Component {
         e.preventDefault();
 
         this.props.searchActor(this.props.number, this.state.currentTextValue);
+
+        this.setState({
+            currentTextValue: ''
+        });
     }
     
     render() {

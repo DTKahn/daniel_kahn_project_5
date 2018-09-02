@@ -25,7 +25,7 @@ const DisplayActorSearchResult = (props) => {
                     props.actorData.known_for
                     ?
                     props.actorData.known_for.map(movie => {
-                        return <li>{movie.title}</li>;
+                        return <li key={movie.id}>{movie.title}</li>;
                     })
                     : 
                     null

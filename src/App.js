@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import Axios from 'axios';
 import SearchSelect from './components/SearchSelect/SearchSelect';
+import DisplayMatchingMovies from './components/DisplayMatchingMovies/DisplayMatchingMovies';
 
 const apiKey = `972b4433f3e8f302aee3055dd209330c`;
 
@@ -152,6 +153,7 @@ class App extends Component {
         </header>
         <div>
           <SearchSelect searchActor={this.searchActor} actor1={this.state.searchResultsActor1} actor2={this.state.searchResultsActor2}/>
+          <DisplayMatchingMovies />
         </div>
       </div>
     );
