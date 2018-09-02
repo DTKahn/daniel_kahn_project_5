@@ -11,7 +11,7 @@ const DisplayMatchingMovies = props => {
                     ?
                     props.movies.map(movie => {
                         return(
-                            <li className="movieLi">
+                            <li key={movie.movieId} className="movieLi">
                                 <div className="actor1">
                                     <h2>{props.actor1.name}</h2>
                                     <p>{movie.actor1Role}</p>

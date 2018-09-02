@@ -38,7 +38,7 @@ class Search extends Component {
             <form onSubmit={this.handleSubmit}>
                 <label htmlFor="search">Actor {this.props.number} Search</label>
                 
-                <input type="text" onChange={this.handleChange} value={this.state.currentTextValue}/>
+                <input required type="text" onChange={this.handleChange} value={this.state.currentTextValue}/>
     
                 <button>Go!</button>
             </form>

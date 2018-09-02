@@ -11,7 +11,8 @@ const SearchSelect = (props) => {
 
             <Search number={props.number} searchActor={props.searchActor}/>
             
-            <DisplayActorSearchResult actorData={props.actorData} />
+            {/* Only displays component if there is content in the related actor state in App.js */}
+            {props.actorData.noSearch ? null : <DisplayActorSearchResult actorData={props.actorData} />}
             
         </div>
     )

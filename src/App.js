@@ -15,10 +15,10 @@ class App extends Component {
     this.state = {
       
       // Result of the actor search for actor 1
-      searchResultsActor1: {},
+      searchResultsActor1: { noSearch: true },
 
       // Result of the actor search for actor 2
-      searchResultsActor2: {},
+      searchResultsActor2: { noSearch: true },
 
       // Matching Movies for Actor 1 and 2
       movies: []
@@ -51,9 +51,19 @@ class App extends Component {
         return actor.popularity === Math.max(...popularityKeys);
       });
 
-      this.setState({
-        [`searchResultsActor${actorNumber}`]: mostPopularActor[0]
-      });
+
+      if (mostPopularActor[0]){
+        this.setState({
+          [`searchResultsActor${actorNumber}`]: mostPopularActor[0]
+        });
+      }
+      // If no actor is found in the search the state for the related actor is set with an object with noActorFound:true, which will be used to display an error message to the user
+      else {
+        this.setState({
+          // Nothing is actually using noActorFound, but setting it so that it's clear what state the targeted actor is in. Occurs when a search has been made and no actor was found.
+          [`searchResultsActor${actorNumber}`]: {noActorFound: true}
+        });
+      }
     });
   }
 
@@ -72,8 +82,8 @@ class App extends Component {
   getMatchingMovies = async (actorId1, actorId2) => {
     const actor1Movies = await this.getActorMovies(actorId1);
     const actor2Movies = await this.getActorMovies(actorId2);
-    console.log('Actor 1 Movies: ', actor1Movies);
-    console.log('Actor 2 Movies: ', actor2Movies);
+    // console.log('Actor 1 Movies: ', actor1Movies);
+    // console.log('Actor 2 Movies: ', actor2Movies);
     
     // Empty array for the ids of each movie each actor is in
     // Will be used to construct an array of movies ids which both actors were in
@@ -131,12 +141,28 @@ class App extends Component {
       return movie.actor2Role = matchingMovie.character;
     });
 
-    console.log('matchingFormatedMoviesArray: ', matchingFormatedMoviesArray);
+    // If there are matching movies, set state movies with array matchingFormatedMoviesArray
+    // Else supply a no match message
+    if (matchingFormatedMoviesArray[0]) {
+      this.setState({
+        movies: matchingFormatedMoviesArray
+      });
+    }
+    else {
+      this.setState({
+        movies: [{
+            actor1Role: "",
+            actor2Role: "",
+            movieId: "",
+          movieName: `Sorry ${this.state.searchResultsActor1.name} and ${this.state.searchResultsActor2.name} have not done any movies together. Please try another pair of actors.`,
+            moviePoster: "",
+            overview: "",
+            releaseDate: ""
+          }]
+      });
+    };
 
-    // Set state movies with array matchingFormatedMoviesArray
-    this.setState({
-      movies: matchingFormatedMoviesArray
-    });
+    
   }
 
   // componentDidMount(){
