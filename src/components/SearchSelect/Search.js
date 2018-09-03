@@ -36,7 +36,10 @@ class Search extends Component {
     render() {
         return(
             <form onSubmit={this.handleSubmit}>
-                <label htmlFor="search">Actor {this.props.number} Search</label>
+                {/* Version 1 – includes actor number. Leaving for now, but will probably delete. */}
+                {/* <label htmlFor="search">Actor {this.props.number} Search</label> */}
+                
+                <label htmlFor="search">Search</label>
                 
                 <input required type="text" onChange={this.handleChange} value={this.state.currentTextValue}/>
     

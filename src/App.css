@@ -135,42 +135,41 @@ html {
   font-size: 62.5%; }
 
 h2 {
-  background: lightblue; }
+  background: #989898; }
 
 * {
   margin: 0;
   padding: 0; }
 
+body {
+  background: #e4e4e4;
+  font-family: 'Roboto', sans-serif; }
+
 img {
   max-width: 100%; }
+
+h1,
+h2 {
+  color: #C03221;
+  font-family: 'Fredoka One', cursive;
+  font-weight: 400; }
+
+h1 {
+  font-size: 5rem; }
 
 .headShot,
 .moviePoster {
   width: 15%; }
 
 .movieLi {
-  background: lightgray;
+  background: #e4e4e4;
   padding: 20px;
   margin-top: 30px; }
-
-.App {
-  text-align: center; }
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 150px;
   margin-bottom: 30px; }
-
-.App-header {
-  background-color: #222;
-  padding: 20px;
-  color: white; }
-
-.App-title {
-  font-size: 3rem; }
-
-.App-intro {
-  font-size: large; }
 
 @keyframes App-logo-spin {
   from {

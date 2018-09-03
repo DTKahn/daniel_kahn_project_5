@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import logo from './assets/logo.svg';
 import './App.css';
 import Axios from 'axios';
 import SearchSelect from './components/SearchSelect/SearchSelect';
@@ -173,16 +173,18 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Movie Match</h1>
-        </header>
-        <div>
+          {/* <img src={logo} className="App-logo" alt="logo" /> */}
+          <h1 className="App-title">Film Friends</h1>
+          <p>Search for two actor's names and find out what films they've done together.</p>
           <SearchSelect 
             searchActor={this.searchActor} 
             actor1={this.state.searchResultsActor1} 
             actor2={this.state.searchResultsActor2}
-          />
+            />
 
+        </header>
+
+        <div>
           <DisplayMatchingMovies 
             movies={this.state.movies} 
             actor1={this.state.searchResultsActor1} 
