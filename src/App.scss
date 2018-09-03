@@ -2,17 +2,29 @@
 @import './stylePartials/setup';
 @import './stylePartials/utils';
 
-// Component imports
-@import './components/SearchSelect/SearchSelect';
-
 * {
   margin: 0;
   padding: 0;
 }
 
+label {
+  display: none;
+}
+
+.wrapper {
+  width: 90%;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.app {
+}
+
 body {
-  background: $bglight;
   font-family: 'Roboto', sans-serif;
+  font-size: 2rem;
+  background: #000;
+  color: white;
 }
 
 img {
@@ -21,33 +33,135 @@ img {
 
 h1,
 h2 {
-  color: #C03221;
+  color: lighten($highlight, 20%);
   font-family: 'Fredoka One', cursive;
   font-weight: 400;
 }
 
 h1 {
-  font-size: 5rem;
+  font-size: 7rem;
+}
+
+ul {
+  list-style: none;
+}
+
+// HEADER
+
+header {
+  background: url('./assets/theatreSeats_web.jpg') center center;
+  background-size: cover;
+  height: 80vh;
+  display: grid;
+  grid-template-rows: 1fr 4fr;
+  grid-template-columns: 1fr;
+  
+}
+
+.title {
+  grid-column: 1 / -1;
+  text-align: center;
+}
+
+h3 {
+  font-size: 2rem;
+}
+
+.searchSelect {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
+  align-items: start;
+}
+
+.actor1,
+.actor2 {
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+
+  & h2 {
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  & input {
+    width: 100%;
+    margin: 0;
+    margin-bottom: 10px;
+
+  }
+
+  & button {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}
+
+.actor1 {
+  grid-column: 1 / span 1;
+}
+
+.actor2 {
+  grid-column: 3 / span 1;
+}
+
+button {
+  background: #FFD23F;
+  border: none;
+  padding: 0 20px;
+  border-radius: 10px;
+  height: 50px;
+}
+
+.showMatches {
+  border-radius: 50%;
+  height: 25vh;
+  width: 25vh;
+  padding: 0;
+  background: #4ECDC4;
+  font-family: 'Fredoka One', cursive;
+  font-size: 3rem;
+  margin-top: 20px;
+}
+
+input {
+  height: 50px;
 }
 
 .headShot,
 .moviePoster {
-  width: 15%;
+  width: 50%;
 }
+
+// DISPLAY MOVIES
+
+.displayMovies {
+  color: black;
+}
+
+.displayMoviesHeaders {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  & h3 {
+    color: black;
+    text-align: center;
+    background: $bglight;
+    font-size: 3rem;
+    padding: 10px 0;
+
+  }
+}
+
+
 
 .movieLi {
   background: $bglight;
   padding: 20px;
   margin-top: 30px;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 150px;
-  margin-bottom: 30px;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
 }

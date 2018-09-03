@@ -6,8 +6,8 @@ import DisplayActorSearchResult from './DisplayActorSearchResult';
 
 const SearchSelect = (props) => {
     return (
-        <div>
-            <h2>Actor {props.number}</h2>
+        <div className={`actor${props.number}`}>
+            <h2>{`Actor ${props.number}`}</h2>
 
             <Search number={props.number} searchActor={props.searchActor}/>
             

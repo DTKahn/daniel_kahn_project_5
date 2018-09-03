@@ -1,17 +1,18 @@
 import React from 'react';
 
 const DisplayMatchingMovies = props => {
-    return (
-        <div>
-            <button onClick={() => {props.getMatchingMovies(props.actor1.id, props.actor2.id)}}>Show Matches!</button>
-            <ul>
-                {/* Ternary waits for prop to have content before running the map */}
-                {
-                    props.movies
-                    ?
-                    props.movies.map(movie => {
-                        console.log('Movie Poster: ', movie.moviePoster);
-                        
+    if(props.movies){
+        return (
+            <div className="displayMovies">
+                
+                <div className="displayMoviesHeaders">
+                    <h3>Character</h3>
+                    <h3>Movie</h3>
+                    <h3>Character</h3>
+                </div>
+                
+                <ul>
+                    {props.movies.map(movie => {
                         return(
                             <li key={movie.movieId} className="movieLi">
                                 <div className="actor1">
@@ -42,13 +43,14 @@ const DisplayMatchingMovies = props => {
                                 </div>
                             </li>
                         )
-                    })
-                    :
-                    null
-                }
-            </ul>
-        </div>
-    )
+                    })}
+                </ul>
+            </div>
+        )
+    }
+    else {
+        return null;
+    }
 }
 
 export default DisplayMatchingMovies;

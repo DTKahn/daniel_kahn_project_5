@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from './assets/logo.svg';
+// import logo from './assets/logo.svg';
 import './App.css';
 import Axios from 'axios';
 import SearchSelect from './components/SearchSelect/SearchSelect';
@@ -21,7 +21,7 @@ class App extends Component {
       searchResultsActor2: { noSearch: true },
 
       // Matching Movies for Actor 1 and 2
-      movies: []
+      movies: false
     }
   }
   
@@ -172,26 +172,33 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          {/* <img src={logo} className="App-logo" alt="logo" /> */}
-          <h1 className="App-title">Film Friends</h1>
-          <p>Search for two actor's names and find out what films they've done together.</p>
-          <SearchSelect 
-            searchActor={this.searchActor} 
-            actor1={this.state.searchResultsActor1} 
-            actor2={this.state.searchResultsActor2}
-            />
+          <header className="App-header">
+            <div className="wrapper">
+              
+              <div className="title">
+                <h1 className="App-title">Film Friends</h1>
+                <h3>Search for two actors and see what films they've been in together.</h3>
+              </div>
+              
+              <SearchSelect 
+                searchActor={this.searchActor} 
+                actor1={this.state.searchResultsActor1} 
+                actor2={this.state.searchResultsActor2}
+                getMatchingMovies={this.getMatchingMovies}
+              />
 
-        </header>
+            </div> {/* End of Wrapper */}
+          </header>
 
-        <div>
-          <DisplayMatchingMovies 
-            movies={this.state.movies} 
-            actor1={this.state.searchResultsActor1} 
-            actor2={this.state.searchResultsActor2}
-            getMatchingMovies={this.getMatchingMovies}
-          />
-        </div>
+          <div>
+            <div className="wrapper">
+              <DisplayMatchingMovies 
+                movies={this.state.movies} 
+                actor1={this.state.searchResultsActor1} 
+                actor2={this.state.searchResultsActor2}
+              />
+            </div> {/* End of Wrapper */}
+          </div>
       </div>
     );
   }

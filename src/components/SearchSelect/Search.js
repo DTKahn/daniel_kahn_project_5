@@ -43,7 +43,7 @@ class Search extends Component {
                 
                 <input required type="text" onChange={this.handleChange} value={this.state.currentTextValue}/>
     
-                <button>Go!</button>
+                <button>Search</button>
             </form>
         );
     }
