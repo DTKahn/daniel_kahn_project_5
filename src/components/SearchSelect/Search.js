@@ -36,8 +36,6 @@ class Search extends Component {
     render() {
         return(
             <form onSubmit={this.handleSubmit}>
-                {/* Version 1 – includes actor number. Leaving for now, but will probably delete. */}
-                {/* <label htmlFor="search">Actor {this.props.number} Search</label> */}
                 
                 <label htmlFor="search">Search</label>
                 

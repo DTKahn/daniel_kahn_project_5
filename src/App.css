@@ -219,7 +219,6 @@ h3 {
   .actor1 .noActor,
   .actor2 .displayActor,
   .actor2 .noActor {
-    flex-basis: 50%;
     flex-grow: 1; }
   .actor1.up,
   .actor2.up {

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import logo from './assets/logo.svg';
 import './App.css';
 import Axios from 'axios';
 import SearchSelect from './components/SearchSelect/SearchSelect';
@@ -26,7 +25,6 @@ class App extends Component {
   }
   
   searchActor = (actorNumber, userInput) => {
-    // console.log(`getActor fired for ${actorNumber}, userInput: ${userInput}`);
     
     Axios({
       url: `${apiUrl}/search/person`,
@@ -36,7 +34,6 @@ class App extends Component {
       }
     })
     .then((res) => {
-      // console.log('set state with res: ', res.data.results);
 
       // Array of popularity values to get the top actor (or stretch-goals, top-3)
       const popularityKeys = res.data.results.map(actor => {
@@ -85,8 +82,6 @@ class App extends Component {
   getMatchingMovies = async (actorId1, actorId2) => {
     const actor1Movies = await this.getActorMovies(actorId1);
     const actor2Movies = await this.getActorMovies(actorId2);
-    // console.log('Actor 1 Movies: ', actor1Movies);
-    // console.log('Actor 2 Movies: ', actor2Movies);
     
     // Empty array for the ids of each movie each actor is in
     // Will be used to construct an array of movies ids which both actors were in
@@ -112,7 +107,6 @@ class App extends Component {
     //       {
     //       movieId: 12107,
     //       actor1Role: 'Professor Sherman Klump and various roles',
-    //       actor2Role: '',
     //       movieName: 'Nutty Professor II: The Klumps',
     //       moviePoster: '/r1WXXXtpNBsgCnCTdjT6ERxOcEV.jpg',
     //       releaseDate: '2000-07-27'
@@ -154,23 +148,11 @@ class App extends Component {
     else {
       this.setState({
         movies: [{
-            actor1Role: "",
-            actor2Role: "",
-            movieId: "",
-          movieName: `Sorry ${this.state.searchResultsActor1.name} and ${this.state.searchResultsActor2.name} have not done any movies together. Please try another pair of actors.`,
-            moviePoster: "",
-            overview: "",
-            releaseDate: ""
+          movieName: `Sorry ${this.state.searchResultsActor1.name} and ${this.state.searchResultsActor2.name} have not done any movies together. Please try another pair of actors.`
           }]
       });
     };
-
-    
   }
-
-  // componentDidMount(){
-  //   this.getMatchingMovies(51329, 72129)
-  // }
   
   render() {
     return (
