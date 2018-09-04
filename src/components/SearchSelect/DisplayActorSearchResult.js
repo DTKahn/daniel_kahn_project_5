@@ -6,6 +6,7 @@ const DisplayActorSearchResult = (props) => {
     
     // If there is an id in props.actorData.id then display the actor
     // Else display the no actor found div
+    
     if(props.actorData.id){
         return (
             <div className="displayActor">

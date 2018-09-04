@@ -197,12 +197,15 @@ h3 {
   text-align: center;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center; }
+  justify-content: center;
+  align-self: stretch;
+  flex-direction: column; }
   .actor1 h2,
   .actor2 h2 {
     display: inline-block;
     width: 100%;
-    margin-bottom: 10px; }
+    margin-bottom: 10px;
+    align-self: flex-start; }
   .actor1 input,
   .actor2 input {
     width: 100%;
@@ -212,6 +215,15 @@ h3 {
   .actor2 button {
     width: 100%;
     margin-bottom: 10px; }
+  .actor1 .displayActor,
+  .actor1 .noActor,
+  .actor2 .displayActor,
+  .actor2 .noActor {
+    flex-basis: 50%;
+    flex-grow: 1; }
+  .actor1.up,
+  .actor2.up {
+    justify-content: flex-start; }
 
 .actor1 {
   grid-column: 1 / span 1; }
@@ -239,27 +251,32 @@ button {
 input {
   height: 50px; }
 
-.displayActor {
+.displayActor,
+.noActor {
   display: flex;
   flex-wrap: wrap;
   background: rgba(255, 255, 255, 0.8);
   margin-top: 15px;
-  padding: 15px;
-  align-self: stretch; }
-  .displayActor h2 {
+  padding: 15px; }
+  .displayActor h2,
+  .noActor h2 {
     width: 100%; }
-  .displayActor h3 {
+  .displayActor h3,
+  .noActor h3 {
     padding-bottom: 10px;
     font-size: 1.5rem;
     color: black; }
-  .displayActor ul {
+  .displayActor ul,
+  .noActor ul {
     width: 100%;
     font-size: 1.5rem;
     padding-left: 10px; }
-  .displayActor li {
+  .displayActor li,
+  .noActor li {
     margin-bottom: 10px;
     text-align: left; }
-  .displayActor .knownFor {
+  .displayActor .knownFor,
+  .noActor .knownFor {
     width: 50%; }
 
 .character {
@@ -297,9 +314,79 @@ input {
   .movieLi h2 {
     text-align: center;
     padding-bottom: 20px; }
+  .movieLi .actor1,
+  .movieLi .actor2 {
+    align-self: flex-start; }
 
 .noMovies {
   grid-column: 1 / span 3; }
   .noMovies .movieTitle {
     color: black;
     font-size: 2rem; }
+
+@media (max-width: 800px) {
+  .searchSelect {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr; }
+  .showMatches {
+    grid-column: 1 / span 2;
+    grid-row: 2;
+    margin: 50px auto; }
+  .searchSelect .actor1,
+  .searchSelect .actor2 {
+    margin: 0 10px; }
+  .searchSelect .actor1 {
+    grid-column: 1 / 2; }
+  .searchSelect .actor2 {
+    grid-column: 2 / 3; }
+  .showMatches {
+    font-size: 2rem; }
+  .movieLi {
+    grid-template-columns: 1fr; }
+    .movieLi .actor1,
+    .movieLi .actor2,
+    .movieLi .movieLi {
+      grid-column: 1 / span 1; }
+    .movieLi .movieLi {
+      order: 1; }
+    .movieLi .actor1,
+    .movieLi .actor2 {
+      order: 2; }
+    .movieLi h2 {
+      padding-bottom: 0;
+      padding-top: 20px; }
+    .movieLi .movieTitle {
+      padding-top: 0;
+      padding-bottom: 20px; }
+  .displayMoviesHeaders {
+    display: none; } }
+
+@media (max-width: 600px) {
+  .displayActor .headShot {
+    width: 100%;
+    padding: 0 8vw; }
+  .displayActor .knownFor {
+    display: none; } }
+
+@media (max-width: 500px) {
+  h1 {
+    font-size: 4rem; }
+  .searchSelect {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, 1fr); }
+  .showMatches {
+    grid-column: 1 / span 1;
+    grid-row: 3;
+    margin: 50px auto; }
+  .searchSelect .actor1,
+  .searchSelect .actor2 {
+    margin: 0 10px; }
+  .searchSelect .actor1 {
+    grid-column: 1 / 2; }
+  .searchSelect .actor2 {
+    grid-column: 1 / 2; }
+  .displayActor {
+    margin-bottom: 30px; }
+    .displayActor .headShot {
+      width: 100%;
+      padding: 0 30%; } }

@@ -54,14 +54,17 @@ class App extends Component {
 
       if (mostPopularActor[0]){
         this.setState({
-          [`searchResultsActor${actorNumber}`]: mostPopularActor[0]
+          [`searchResultsActor${actorNumber}`]: mostPopularActor[0],
+          movies: false
         });
       }
       // If no actor is found in the search the state for the related actor is set with an object with noActorFound:true, which will be used to display an error message to the user
       else {
         this.setState({
           // Nothing is actually using noActorFound, but setting it so that it's clear what state the targeted actor is in. Occurs when a search has been made and no actor was found.
-          [`searchResultsActor${actorNumber}`]: {noActorFound: true}
+          [`searchResultsActor${actorNumber}`]: {noActorFound: true},
+          movies: false
+
         });
       }
     });

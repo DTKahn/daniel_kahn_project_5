@@ -75,17 +75,21 @@ h3 {
   margin-top: 30px;
 }
 
+
 .actor1,
 .actor2 {
   text-align: center;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  align-self: stretch;
+  flex-direction: column;
 
   & h2 {
     display: inline-block;
     width: 100%;
     margin-bottom: 10px;
+    align-self: flex-start;
   }
 
   & input {
@@ -99,6 +103,18 @@ h3 {
     width: 100%;
     margin-bottom: 10px;
   }
+
+  & .displayActor,
+  & .noActor {
+    flex-basis: 50%;
+    flex-grow: 1;
+  }
+
+  &.up {
+    justify-content: flex-start;
+  }
+
+
 }
 
 .actor1 {
@@ -132,13 +148,13 @@ input {
   height: 50px;
 }
 
-.displayActor {
+.displayActor,
+.noActor {
   display: flex;
   flex-wrap: wrap;
   background: $bglight;
   margin-top: 15px;
   padding: 15px;
-  align-self: stretch;
 
   & h2 {
     width: 100%;
@@ -215,6 +231,11 @@ input {
     text-align: center;
     padding-bottom: 20px;
   }
+
+  & .actor1,
+  & .actor2 {
+    align-self: flex-start;
+  }
 }
 
 .noMovies {
@@ -225,3 +246,5 @@ input {
     font-size: 2rem;
   }
 }
+
+@import './stylePartials/mediaQueries';

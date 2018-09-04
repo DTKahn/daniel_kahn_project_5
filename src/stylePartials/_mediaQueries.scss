@@ -1,1 +1,125 @@
 // Project 5 Media Queries Partial
+
+@media (max-width: 800px) {
+
+    .searchSelect {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+    }
+
+    .showMatches {
+        grid-column: 1 / span 2;
+        grid-row: 2;
+        margin: 50px auto;
+    }
+
+    .searchSelect {
+
+        & .actor1,
+        & .actor2{
+            margin: 0 10px;
+        }
+        
+        & .actor1 {
+            grid-column: 1 / 2;
+        }
+    
+        & .actor2 {
+            grid-column: 2 / 3;
+        }
+    }
+
+    .showMatches {
+        font-size: 2rem;
+    }
+
+    .movieLi {
+        grid-template-columns: 1fr;
+
+        & .actor1,
+        & .actor2,
+        & .movieLi {
+            grid-column: 1 / span 1;
+        }
+
+        & .movieLi {
+            order: 1;
+        }
+
+        & .actor1,
+        & .actor2 {
+            order: 2;
+        }
+
+        & h2 {
+            padding-bottom: 0;
+            padding-top: 20px;
+        }
+
+        & .movieTitle {
+            padding-top: 0;
+            padding-bottom: 20px;
+        }
+    }
+    
+    .displayMoviesHeaders {
+        display: none;
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    .displayActor {
+        & .headShot {
+            width: 100%;
+            padding: 0 8vw;
+        }
+
+        & .knownFor {
+            display: none;
+        }
+    }
+}
+
+@media (max-width: 500px) {
+    h1 {
+        font-size: 4rem;
+    }
+    
+    .searchSelect {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(3, 1fr);
+    }
+
+    .showMatches {
+        grid-column: 1 / span 1;
+        grid-row: 3;
+        margin: 50px auto;
+    }
+
+    .searchSelect {
+
+        & .actor1,
+        & .actor2{
+            margin: 0 10px;
+        }
+        
+        & .actor1 {
+            grid-column: 1 / 2;
+        }
+    
+        & .actor2 {
+            grid-column: 1 / 2;
+        }
+    }
+
+    .displayActor {
+        margin-bottom: 30px;
+        
+        & .headShot {
+            width: 100%;
+            padding: 0 30%;
+        }
+    }
+}
