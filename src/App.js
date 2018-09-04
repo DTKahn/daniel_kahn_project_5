@@ -177,7 +177,7 @@ class App extends Component {
               
               <div className="title">
                 <h1 className="App-title">Film Friends</h1>
-                <h3>Search for two actors and see what films they've been in together.</h3>
+                <h3 className="subHeader">Search for two actors and see what films they've been in together.</h3>
               </div>
               
               <SearchSelect 

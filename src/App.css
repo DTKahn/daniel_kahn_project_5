@@ -149,19 +149,24 @@ label {
 body {
   font-family: 'Roboto', sans-serif;
   font-size: 2rem;
-  background: #000;
-  color: white; }
+  background: #000; }
 
 img {
-  max-width: 100%; }
+  max-width: 100%;
+  display: block; }
 
 h1,
-h2 {
+h2,
+h3 {
   color: #cf3a3f;
   font-family: 'Fredoka One', cursive;
   font-weight: 400; }
 
+.subHeader {
+  color: white; }
+
 h1 {
+  padding-top: 20px;
   font-size: 7rem; }
 
 ul {
@@ -170,10 +175,7 @@ ul {
 header {
   background: url("./assets/theatreSeats_web.jpg") center center;
   background-size: cover;
-  height: 80vh;
-  display: grid;
-  grid-template-rows: 1fr 4fr;
-  grid-template-columns: 1fr; }
+  min-height: 85vh; }
 
 .title {
   grid-column: 1 / -1;
@@ -187,13 +189,15 @@ h3 {
   grid-template-rows: 1fr;
   grid-template-columns: repeat(3, 1fr);
   justify-items: center;
-  align-items: start; }
+  align-items: start;
+  margin-top: 30px; }
 
 .actor1,
 .actor2 {
   text-align: center;
   display: flex;
-  flex-wrap: wrap; }
+  flex-wrap: wrap;
+  justify-content: center; }
   .actor1 h2,
   .actor2 h2 {
     display: inline-block;
@@ -226,7 +230,7 @@ button {
   border-radius: 50%;
   height: 25vh;
   width: 25vh;
-  padding: 0;
+  padding: 15px;
   background: #4ECDC4;
   font-family: 'Fredoka One', cursive;
   font-size: 3rem;
@@ -235,26 +239,67 @@ button {
 input {
   height: 50px; }
 
+.displayActor {
+  display: flex;
+  flex-wrap: wrap;
+  background: rgba(255, 255, 255, 0.8);
+  margin-top: 15px;
+  padding: 15px;
+  align-self: stretch; }
+  .displayActor h2 {
+    width: 100%; }
+  .displayActor h3 {
+    padding-bottom: 10px;
+    font-size: 1.5rem;
+    color: black; }
+  .displayActor ul {
+    width: 100%;
+    font-size: 1.5rem;
+    padding-left: 10px; }
+  .displayActor li {
+    margin-bottom: 10px;
+    text-align: left; }
+  .displayActor .knownFor {
+    width: 50%; }
+
+.character {
+  text-align: center; }
+
 .headShot,
 .moviePoster {
   width: 50%; }
+
+.moviePoster {
+  float: left;
+  padding-right: 15px; }
 
 .displayMovies {
   color: black; }
 
 .displayMoviesHeaders {
+  padding-top: 50px;
   display: grid;
   grid-template-columns: repeat(3, 1fr); }
   .displayMoviesHeaders h3 {
-    color: black;
     text-align: center;
-    background: #e4e4e4;
-    font-size: 3rem;
+    background: rgba(255, 255, 255, 0.8);
+    font-size: 3.5rem;
     padding: 10px 0; }
 
 .movieLi {
-  background: #e4e4e4;
+  background: rgba(255, 255, 255, 0.8);
   padding: 20px;
   margin-top: 30px;
   display: grid;
-  grid-template-columns: repeat(3, 1fr); }
+  grid-template-columns: repeat(3, 1fr);
+  align-items: start;
+  justify-items: center; }
+  .movieLi h2 {
+    text-align: center;
+    padding-bottom: 20px; }
+
+.noMovies {
+  grid-column: 1 / span 3; }
+  .noMovies .movieTitle {
+    color: black;
+    font-size: 2rem; }

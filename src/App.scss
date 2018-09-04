@@ -17,28 +17,31 @@ label {
   margin: 0 auto;
 }
 
-.app {
-}
-
 body {
   font-family: 'Roboto', sans-serif;
   font-size: 2rem;
   background: #000;
-  color: white;
 }
 
 img {
   max-width: 100%;
+  display: block;
 }
 
 h1,
-h2 {
+h2,
+h3 {
   color: lighten($highlight, 20%);
   font-family: 'Fredoka One', cursive;
   font-weight: 400;
 }
 
+.subHeader {
+  color: white;
+}
+
 h1 {
+  padding-top: 20px;
   font-size: 7rem;
 }
 
@@ -51,11 +54,7 @@ ul {
 header {
   background: url('./assets/theatreSeats_web.jpg') center center;
   background-size: cover;
-  height: 80vh;
-  display: grid;
-  grid-template-rows: 1fr 4fr;
-  grid-template-columns: 1fr;
-  
+  min-height: 85vh;
 }
 
 .title {
@@ -73,6 +72,7 @@ h3 {
   grid-template-columns: repeat(3, 1fr);
   justify-items: center;
   align-items: start;
+  margin-top: 30px;
 }
 
 .actor1,
@@ -80,6 +80,7 @@ h3 {
   text-align: center;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 
   & h2 {
     display: inline-block;
@@ -120,7 +121,7 @@ button {
   border-radius: 50%;
   height: 25vh;
   width: 25vh;
-  padding: 0;
+  padding: 15px;
   background: #4ECDC4;
   font-family: 'Fredoka One', cursive;
   font-size: 3rem;
@@ -131,9 +132,53 @@ input {
   height: 50px;
 }
 
+.displayActor {
+  display: flex;
+  flex-wrap: wrap;
+  background: $bglight;
+  margin-top: 15px;
+  padding: 15px;
+  align-self: stretch;
+
+  & h2 {
+    width: 100%;
+  }
+
+  & h3 {
+    padding-bottom: 10px;
+    font-size: 1.5rem;
+    color: black;
+  }
+
+  & ul {
+    width: 100%;
+    font-size: 1.5rem;
+    padding-left: 10px;
+  }
+
+  & li {
+    margin-bottom: 10px;
+    text-align: left;
+  }
+
+  & .knownFor {
+    width: 50%;
+
+  }
+}
+
+.character {
+  text-align: center;
+}
+
 .headShot,
 .moviePoster {
   width: 50%;
+}
+
+.moviePoster {
+  float: left;
+  padding-right: 15px;
 }
 
 // DISPLAY MOVIES
@@ -143,20 +188,19 @@ input {
 }
 
 .displayMoviesHeaders {
+  padding-top: 50px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
 
   & h3 {
-    color: black;
     text-align: center;
     background: $bglight;
-    font-size: 3rem;
+    font-size: 3.5rem;
     padding: 10px 0;
+    
 
   }
 }
-
-
 
 .movieLi {
   background: $bglight;
@@ -164,4 +208,20 @@ input {
   margin-top: 30px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  align-items: start;
+  justify-items: center;
+
+  & h2 {
+    text-align: center;
+    padding-bottom: 20px;
+  }
+}
+
+.noMovies {
+  grid-column: 1 / span 3;
+  
+  & .movieTitle {
+    color: black;
+    font-size: 2rem;
+  }
 }

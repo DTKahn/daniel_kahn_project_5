@@ -13,10 +13,13 @@ const SearchSelect = (props) => {
             />
 
             
-            <button 
-                className="showMatches" 
+            <button
+                disabled={props.actor1.id && props.actor2.id ? false : true} 
+                className="showMatches"
                 onClick={() => { props.getMatchingMovies(props.actor1.id, props.actor2.id) }}>
-                    Show Matches!
+                {props.actor1.id && props.actor2.id ? 'Click to Show Matches!' : 'Search 2 actors to enable match'}
+                    
+                    
             </button>
             
             <SelectPerson 

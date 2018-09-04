@@ -8,32 +8,43 @@ const DisplayActorSearchResult = (props) => {
     // Else display the no actor found div
     if(props.actorData.id){
         return (
-            <div>
+            <div className="displayActor">
                 {/* Name */}
                 <h2>{props.actorData.name}</h2>
                 
-                {/* Headshot */}
-                <div className="headShot">
-                    <img src={`https://image.tmdb.org/t/p/w1280${props.actorData.profile_path}`} alt={`${props.actorData.name}`}/>
-                </div>
+
+                {
+                    props.actorData.profile_path === null 
+                    ? 
+                    null 
+                    :
+                    <div className="headShot">
+                        <img src={`https://image.tmdb.org/t/p/w1280${props.actorData.profile_path}`} alt={`${props.actorData.name}`}/>
+                    </div>
+                }
                 
     
                 {/* Known For */}
-                <ul>
-                    
-                    {/* li with title of each known for movie */}
-                    {/* Ternary waits for prop to have content before running the map */}
-                    {
-                        props.actorData.known_for
-                        ?
-                        props.actorData.known_for.map(movie => {
-                            return <li key={movie.id}>{movie.title}</li>;
-                        })
-                        : 
-                        null
-                    }
-                    
-                </ul>
+                <div className="knownFor">
+                    {console.log('Known For: ', props.actorData.known_for)}
+
+                    {props.actorData.known_for ? <h3>Known For</h3> : null}
+                    <ul>
+                        
+                        {/* li with title of each known for movie */}
+                        {/* Ternary waits for prop to have content before running the map */}
+                        {
+                            props.actorData.known_for
+                            ?
+                            props.actorData.known_for.map(movie => {
+                                return <li key={movie.id}>{movie.title}</li>;
+                            })
+                            : 
+                            null
+                        }
+                        
+                    </ul>
+                </div>
     
             </div>
         );
@@ -44,9 +55,7 @@ const DisplayActorSearchResult = (props) => {
                 <p>No actor found, please search again.</p>
             </div>
         );
-    };
-    
-    
+    }
 };
 
 export default DisplayActorSearchResult;
